@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+	<div>servey一覧画面</div>
+	<table>
+		<tr th:each="survey: ${surveys}">
+			<td th:text="${survey.id}"></td>
+			<td th:text="${survey.age}"></td>
+			<td th:text="${survey.satisfaction}"></td>
+			<td th:text="${survey.comment}"></td>
+		</tr>
+	</table>
+	
+	<a href="/surveys/new">投稿画面へ移動</a>
+</body>
+</html>

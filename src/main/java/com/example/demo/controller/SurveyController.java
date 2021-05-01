@@ -1,0 +1,42 @@
+package com.example.demo.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.example.demo.entity.Survey;
+import com.example.demo.repository.SurveyRepository;
+
+@Controller
+public class SurveyController {
+	@Autowired
+	SurveyRepository repository;
+	
+	@GetMapping("/surveys")
+	public String index(Model model) {
+		model.addAttribute("surveys", repository.findAll());
+		return "survey/index";
+	}
+	
+	@GetMapping("/surveys/new")
+	public String newSurvey(Model model) {
+		return "survey/new";
+	}
+	
+	@PostMapping("/surveys")
+	public String create(@ModelAttribute Survey survey) {
+		repository.save(survey);
+		return "redirect:/surveys/" + survey.getId();
+	}
+	
+	@GetMapping("/surveys/{id}")
+	public String show(@PathVariable int id, Model model) {
+		model.addAttribute("survey", repository.getOne(id));
+		return "survey/show";
+	}
+	
+}
