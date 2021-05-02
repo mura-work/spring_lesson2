@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.example.demo.entity.Survey;
 import com.example.demo.repository.SurveyRepository;
@@ -39,4 +40,28 @@ public class SurveyController {
 		return "survey/show";
 	}
 	
+	@GetMapping("/surveys/{id}/edit")
+	public String edit(@PathVariable int id, Model model) {
+		model.addAttribute("survey", repository.getOne(id));
+		return "survey/edit";
+	}
+	
+	@PutMapping("/surveys/{id}")
+	public String update(@PathVariable int id, @ModelAttribute Survey survey) {
+		repository.save(survey);
+		return "redirect:/surveys/" + survey.getId();
+	}
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+

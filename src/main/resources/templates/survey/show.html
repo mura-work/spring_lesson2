@@ -15,5 +15,7 @@
 	
 	<a href="/surveys/new">投稿画面へ移動</a>
 	<a href="/surveys">一覧画面へ移動</a>
+	<a th:href="@{/surveys/{id}(id=${survey.id})}">編集画面へ移動</a>
+	<a th:href="@{/surveys/{id}/edit(id=${survey.id})}">編集画面へ移動</a>
 </body>
 </html>
