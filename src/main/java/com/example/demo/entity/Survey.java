@@ -6,6 +6,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 
 @Entity
 @Table(name = "surveys")
@@ -14,12 +19,19 @@ public class Survey {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column
+	@NotNull
+	@Max(100)
+	@Min(0)
 	private int age;
 	
+	@NotNull
+	@Max(5)
+	@Min(1)
 	@Column
 	private int satisfaction;
 	
+	@NotNull
+	@Size(max = 100)
 	@Column
 	private String comment;
 

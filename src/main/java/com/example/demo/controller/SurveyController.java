@@ -1,10 +1,9 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -32,7 +31,10 @@ public class SurveyController {
 	}
 	
 	@PostMapping("/surveys")
-	public String create(@ModelAttribute Survey survey) {
+	public String create(@ModelAttribute Survey survey, BindingResult result) {
+		if (result.hasErrors()) {
+			return "survey/new";
+		}
 		repository.save(survey);
 		return "redirect:/surveys/" + survey.getId();
 	}
