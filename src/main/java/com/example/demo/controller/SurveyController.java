@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.entity.Survey;
 import com.example.demo.repository.SurveyRepository;
@@ -64,6 +65,12 @@ public class SurveyController {
 	public String destroy(@PathVariable int id) {
 		repository.deleteById(id);
 		return "redirect:/surveys";
+	}
+	
+	@RequestMapping("/searches/{keyword}")
+	public String searchLike(@PathVariable String keyword, Model model) {
+		model.addAttribute("survey", repository.findByComment("%" + keyword + "%"));
+		return "survey/index";
 	}
 	
 }
