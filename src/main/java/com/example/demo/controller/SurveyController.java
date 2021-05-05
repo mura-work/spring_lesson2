@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,8 +33,9 @@ public class SurveyController {
 	}
 	
 	@PostMapping("/surveys")
-	public String create(@ModelAttribute Survey survey, BindingResult result) {
+	public String create(@ModelAttribute @Valid Survey survey, BindingResult result) {
 		if (result.hasErrors()) {
+			System.out.println();
 			return "survey/new";
 		}
 		repository.save(survey);
