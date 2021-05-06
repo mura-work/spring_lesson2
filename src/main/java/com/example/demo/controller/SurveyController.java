@@ -67,11 +67,13 @@ public class SurveyController {
 		return "redirect:/surveys";
 	}
 	
-	@RequestMapping("/searches/{keyword}")
-	public String searchLike(@PathVariable String keyword, Model model) {
-		model.addAttribute("survey", repository.findByComment("%" + keyword + "%"));
+	@RequestMapping("searches/{comment}")
+	public String searchLike(@PathVariable String comment, Model model) {
+		model.addAttribute("survey", repository.findByCommentLike("%" + comment + "%"));
 		return "survey/index";
 	}
+	
+	
 	
 }
 
