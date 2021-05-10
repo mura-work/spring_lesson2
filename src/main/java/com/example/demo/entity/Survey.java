@@ -26,7 +26,7 @@ public class Survey {
 	
 	@NotNull
 	@Max(5)
-	@Min(1)
+	@Min(0)
 	@Column
 	private int satisfaction;
 	
