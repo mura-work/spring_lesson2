@@ -29,15 +29,14 @@ public class SurveyController {
 	}
 	
 	@GetMapping("/surveys/new")
-	public String newSurvey(Model model) {
+	public String newSurvey(@ModelAttribute Survey survey) {
 		return "survey/new";
 	}
 	
 	@PostMapping("/surveys")
-	public String create(@ModelAttribute @Valid Survey survey, BindingResult result) {
+	public String create(@Valid @ModelAttribute Survey survey, BindingResult result) {
 		if (result.hasErrors()) {
-			System.out.println();
-			return "survey/new";
+			return newSurvey(survey);
 		}
 		repository.save(survey);
 		return "redirect:/surveys/" + survey.getId();
