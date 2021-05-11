@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+	<div>servey編集画面</div>
+	<form th:action="@{/surveys/{id}(id=*{id})}" th:method="put" th:object="${survey}">
+		年齢：<input type="number" name="age" th:field="${survey.age}" />
+		評価：<input type="number" name="satisfaction" th:field="${survey.satisfaction}" />
+		コメント：<input type="text" name="comment" th:field="${survey.comment}" />
+		<input type="submit" value="更新" />
+	</form>
+</body>
+</html>

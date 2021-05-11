@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+	<div>item詳細画面</div>
+	<table>
+			<td th:text="${items.id}"></td>
+			<td th:text="${items.name}"></td>
+			<td th:text="${items.price}"></td>
+	</table>
+	
+	<a href="/items">一覧画面へ戻る</a>
+	<a href="/items/new">投稿する</a>
+	<!-- <a th:href="@{/surveys/{id}/edit(id=${survey.id})}">編集する</a> -->
+</body>
+</html>
