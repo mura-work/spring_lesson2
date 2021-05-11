@@ -46,6 +46,12 @@ public class ItemController {
 	 return "items/index";
  }
  
+ @GetMapping("/items/{id}/edit")
+ public String edit(@PathVariable int id, Model model) {
+	 model.addAttribute("items", repository.findById(id));
+	 return "items/edit";
+ }
+ 
 }
 
 
