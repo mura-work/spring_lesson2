@@ -1,11 +1,14 @@
 package com.example.demo.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,14 +23,14 @@ public class ItemController {
  ItemRepository repository;
  
  @GetMapping("/items/new") 
- public String newItem(ItemForm form) {
+ public String newItem(@ModelAttribute ItemForm form) {
 	 return "items/new";
  }
  
  @PostMapping("/items")
- public String create(ItemForm form, BindingResult result) {
+ public String create(@Valid @ModelAttribute ItemForm form, BindingResult result) {
 	 if (result.hasErrors()) {
-		 return "items/new";
+		 return newItem(form);
 	 }
 	 Item item = new Item();
 	 item.setName(form.getName());

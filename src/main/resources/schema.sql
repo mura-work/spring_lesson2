@@ -16,10 +16,10 @@ CREATE TABLE items
     PRIMARY KEY(id)
 );
 
-CREATE TABLE items 
+CREATE TABLE comments
 (
     id INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR2(100),
-    count INT,
-    survey_id INT
+    text VARCHAR2(400),
+    item_id int not null references items(id),
+    PRIMARY KEY(id)
 );
