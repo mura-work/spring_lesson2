@@ -1,10 +1,20 @@
 package com.example.demo.form;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
 public class ItemForm {
+	
+	@Max(value = 999)
+	@NotNull
 	private int id;
 	
+	@NotNull
+	@Pattern(regexp="^[a-zA-Z0-9]+$")
 	private String name;
 	
+	@NotNull
 	private int price;
 
 	public int getId() {

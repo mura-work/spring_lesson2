@@ -1,8 +1,12 @@
 package com.example.demo.form;
 
-public class CountForm {
-	private int number;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
 
+public class CountForm {
+	
+	private int number;
+	
 	public int getNumber() {
 		return number;
 	}
