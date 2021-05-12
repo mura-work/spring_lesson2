@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -48,8 +50,23 @@ public class ItemController {
  
  @GetMapping("/items/{id}/edit")
  public String edit(@PathVariable int id, Model model) {
-	 model.addAttribute("items", repository.findById(id));
+	 model.addAttribute("item", repository.getOne(id));
 	 return "items/edit";
+ }
+ 
+ @PatchMapping("/items/{id}")
+ public String update(@PathVariable int id, ItemForm form, BindingResult result) {
+	 Item item = repository.getOne(id);
+	 item.setName(form.getName());
+	 item.setPrice(form.getPrice());
+	 repository.save(item);
+	 return "redirect:/items/" + form.getId();
+ }
+ 
+ @DeleteMapping("/items/{id}")
+ public String delete(@PathVariable int id) {
+	 repository.delete(repository.getOne(id));
+	 return "redirect:/items";
  }
  
 }

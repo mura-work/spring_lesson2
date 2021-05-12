@@ -21,6 +21,12 @@
 				<td th:text="${item.id}"></td>
 				<td th:text="${item.name}"></td>
 				<td th:text="${item.price}"></td>
+				<td><a th:href="@{/items/{id}/edit(id=${item.id})}">編集</a></td>
+				<td>
+					<form th:method="delete" th:action="@{/items/{id}(id=${item.id})}">
+						<input type="submit" value="削除" />
+					</form>
+				</td>
 			</tr>
 		</tbody>
 	</table>
