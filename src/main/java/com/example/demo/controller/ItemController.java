@@ -15,12 +15,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.entity.Item;
 import com.example.demo.form.ItemForm;
+import com.example.demo.repository.CommentsRepository;
 import com.example.demo.repository.ItemRepository;
 
 @Controller
 public class ItemController {
  @Autowired
  ItemRepository repository;
+ 
+ @Autowired
+ CommentsRepository commentRepository;
  
  @GetMapping("/items/new") 
  public String newItem(@ModelAttribute ItemForm form) {
@@ -42,6 +46,7 @@ public class ItemController {
  @GetMapping("/items/{id}")
  public String show(@PathVariable int id, Model model) { 
 	 model.addAttribute("items", repository.getOne(id));
+	 model.addAttribute("comments", commentRepository.findByItemId(id));
 	 return "items/show";
  }
  

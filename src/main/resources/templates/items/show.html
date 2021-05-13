@@ -15,5 +15,24 @@
 	<a href="/items">一覧画面へ戻る</a>
 	<a href="/items/new">投稿する</a>
 	<a th:href="@{/items/{id}/edit(id=${items.id})}">編集する</a>
+	<h3>コメントフォーム</h3>
+	<table>
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>名前</th>
+				<th>コメント</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="comment: ${comments}">
+				<th th:text="${comment.id}"></th>
+				<th th:text="${comment.item.name}"></th>
+				<th th:text="${comment.text}"></th>
+				<th></th>
+			</tr>
+		</tbody>
+	</table>
 </body>
 </html>

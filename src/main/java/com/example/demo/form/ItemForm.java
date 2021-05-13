@@ -15,7 +15,7 @@ public class ItemForm {
 	private String name;
 	
 	@NotNull
-	private int price;
+	private Integer price;
 
 	public int getId() {
 		return id;
@@ -33,11 +33,11 @@ public class ItemForm {
 		this.name = name;
 	}
 
-	public int getPrice() {
+	public Integer getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(Integer price) {
 		this.price = price;
 	}
 }
