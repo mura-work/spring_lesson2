@@ -15,5 +15,33 @@
 	<a href="/items">一覧画面へ戻る</a>
 	<a href="/items/new">投稿する</a>
 	<a th:href="@{/items/{id}/edit(id=${items.id})}">編集する</a>
+	<h3>コメントフォーム</h3>
+	<form method="post" th:action="@{/items/{id}/comments(id=*{items.id})}">
+		<textarea name="text" rows="3" cols="30"></textarea>
+		<input type="hidden" value="${items.id}"/>
+		<input type="submit" value="投稿" />
+	</form>
+	<table>
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>名前</th>
+				<th>コメント</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="comment: ${comments}">
+				<th th:text="${comment.id}"></th>
+				<th th:text="${comment.item.name}"></th>
+				<th th:text="${comment.text}"></th>
+				<th>
+					<form th:method="delete" th:action="@{/items/{item_id}/comments/{id}(item_id=*{items.id}, id=*{comment.id})}">
+						<input type="submit" value="削除" />
+					</form>
+				</th>
+			</tr>
+		</tbody>
+	</table>
 </body>
 </html>

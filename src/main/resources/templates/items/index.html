@@ -14,6 +14,7 @@
 				<th>値段</th>
 				<th></th>
 				<th></th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -21,6 +22,7 @@
 				<td th:text="${item.id}"></td>
 				<td th:text="${item.name}"></td>
 				<td th:text="${item.price}"></td>
+				<td><a th:href="@{/items/{id}(id=${item.id})}">詳細</a></td>
 				<td><a th:href="@{/items/{id}/edit(id=${item.id})}">編集</a></td>
 				<td>
 					<form th:method="delete" th:action="@{/items/{id}(id=${item.id})}">
