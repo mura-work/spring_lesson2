@@ -5,7 +5,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div>items一覧画面</div>
+	<h3>items一覧画面</h3>
+	<form method="get" th:action="@{/items/search}">
+		<label>名前で検索</label><br>
+		<input type="text" name="name" />
+		<input type="submit" value="検索" />
+	</form>
 	<table>
 		<thead>
 			<tr>

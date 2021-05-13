@@ -77,6 +77,12 @@ public class ItemController {
 	 return "redirect:/items";
  }
  
+ @GetMapping("/items/search")
+ public String itemSearch(ItemForm form, Model model) {
+	 model.addAttribute("items", repository.findByNameLike("%" + form.getName() + "%"));
+	 return "items/index";
+ }
+ 
 }
 
 

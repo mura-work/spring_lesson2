@@ -7,19 +7,32 @@
 <body>
 	<div>item詳細画面</div>
 	<table>
-			<tr th:text="${items.id}"></tr>
-			<tr th:text="${items.name}"></tr>
-			<tr th:text="${items.price}"></tr>
+	<thead>
+		<tr>
+			<th>id</th>
+			<th>タイトル</th>
+			<th>値段</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th th:text="${items.id}"></th>
+			<th th:text="${items.name}"></th>
+			<th th:text="${items.price}"></th>
+		</tr>
+	</tbody>
+			
 	</table>
 	
 	<a href="/items">一覧画面へ戻る</a>
 	<a href="/items/new">投稿する</a>
 	<a th:href="@{/items/{id}/edit(id=${items.id})}">編集する</a>
-	<h3>コメントフォーム</h3>
-	<form method="post" th:action="@{/items/{id}/comments(id=*{items.id})}">
-		<textarea name="text" rows="3" cols="30"></textarea>
-		<input type="hidden" value="${items.id}"/>
-		<input type="submit" value="投稿" />
+	
+	<h3>コメント一覧</h3>
+	<form method="get" th:action="@{/items/{id}/comments/search(id=*{items.id})}">
+		<label>コメント検索</label>
+		<input type="text" name="text" />
+		<input type="submit" value="検索" />
 	</form>
 	<table>
 		<thead>
@@ -43,5 +56,11 @@
 			</tr>
 		</tbody>
 	</table>
+	<h3>コメントフォーム</h3>
+	<form method="post" th:action="@{/items/{id}/comments(id=*{items.id})}">
+		<textarea name="text" rows="3" cols="30"></textarea>
+		<input type="hidden" value="${items.id}"/>
+		<input type="submit" value="投稿" />
+	</form>
 </body>
 </html>
