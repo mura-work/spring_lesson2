@@ -35,7 +35,11 @@
 				<th th:text="${comment.id}"></th>
 				<th th:text="${comment.item.name}"></th>
 				<th th:text="${comment.text}"></th>
-				<th></th>
+				<th>
+					<form th:method="delete" th:action="@{/items/{item_id}/comments/{id}(item_id=*{items.id}, id=*{comment.id})}">
+						<input type="submit" value="削除" />
+					</form>
+				</th>
 			</tr>
 		</tbody>
 	</table>

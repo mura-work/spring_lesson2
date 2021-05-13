@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,4 +30,11 @@ public class CommentsController {
 		repository.save(comment);
 		return "redirect:/items/" + id;
 	}
+	
+	@DeleteMapping("/items/{item_id}/comments/{id}")
+	public String delete(@PathVariable int item_id, @PathVariable int id) { 
+		repository.delete(repository.getOne(id));
+		return "redirect:/items/" + item_id;
+	}
+	
 }
