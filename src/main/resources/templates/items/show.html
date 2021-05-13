@@ -16,6 +16,11 @@
 	<a href="/items/new">投稿する</a>
 	<a th:href="@{/items/{id}/edit(id=${items.id})}">編集する</a>
 	<h3>コメントフォーム</h3>
+	<form method="post" th:action="@{/items/{id}/comments(id=*{items.id})}">
+		<textarea name="text" rows="3" cols="30"></textarea>
+		<input type="hidden" value="${items.id}"/>
+		<input type="submit" value="投稿" />
+	</form>
 	<table>
 		<thead>
 			<tr>
