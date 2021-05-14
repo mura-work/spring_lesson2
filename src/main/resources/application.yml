@@ -7,3 +7,12 @@ spring:
  h2.console.enabled: true
  mvc:
    hiddenmethod.filter.enabled: true
+
+lesson2:
+ string:
+  property: Some text
+  propertyDefault:
+ int:
+  prooperty:
+ boolean:
+  property: false

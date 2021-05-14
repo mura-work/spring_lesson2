@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+	<div>items編集画面</div>
+	<form th:method="patch" th:action="@{/items/{id}(id=*{id})}" th:object="${item}">
+		<label>名前</label>
+		<input type="text" name="name" th:field="${item.name}" />
+		<label>値段</label>
+		<input type="number" name="price" th:field="${item.price}" />
+		<input type="submit" value="更新" />
+	</form>
+</body>
+</html>

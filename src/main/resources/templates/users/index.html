@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+	<h3>users一覧画面</h3>
+	<!-- <form method="get" th:action="@{/items/search}">
+		<label>名前で検索</label><br>
+		<input type="text" name="name" />
+		<input type="submit" value="検索" />
+	</form> -->
+	<table>
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>名前</th>
+				<th>ステータス</th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="user: ${users}">
+				<td th:text="${user.id}"></td>
+				<td th:text="${user.name}"></td>
+				<td th:text="${user.isDeleted}"></td>
+				<td><a th:href="@{/users/{id}(id=${user.id})}">詳細</a></td>
+				<td><a th:href="@{/users/{id}/edit(id=${user.id})}">編集</a></td>
+				<td>
+					<form th:method="delete" th:action="@{/users/{id}(id=${user.id})}">
+						<input type="submit" value="削除" />
+					</form>
+				</td> 
+			</tr>
+		</tbody>
+	</table>
+	
+	<a href="/users/new">投稿画面へ移動</a>
+</body>
+</html>
