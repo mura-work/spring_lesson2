@@ -12,7 +12,7 @@
 		<input type="text" th:field="*{title}" />
 		<span th:errors="*{title}"></span><br />
 		<label>内容</label>
-		<textarea name="text" rows="5" cols="40"></textarea>
+		<textarea name="text" rows="5" cols="40" th:field="*{text}"></textarea>
 		<span th:errors="*{text}"></span><br />
 		<input type="submit" value="更新" />
 	</form>

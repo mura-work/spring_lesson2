@@ -3,6 +3,8 @@
 <a href="/">top</a>
 <th:block th:if="${session.id != null}">
 	<a href="/users">ユーザ一覧</a>
+	<a href="/books">投稿一覧</a>
+	<a href="/books/new">投稿する</a>
 	<a href="/logout">ログアウト</a>
 </th:block>
 <th:block th:if="${session.id == null}">

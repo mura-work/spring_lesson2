@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/main :: layout(~{::body/content()})}">
 <head>
 <meta charset="UTF-8" />
 <title>Insert title here</title>
@@ -25,7 +26,6 @@
 	</table>
 	
 	<a href="/books">一覧画面へ戻る</a>
-	<a href="/books/new">投稿する</a>
 	<a th:href="@{/books/{id}/edit(id=${book.id})}">編集する</a>
 	
 	<!-- <h3>コメント一覧</h3>
