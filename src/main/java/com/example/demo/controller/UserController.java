@@ -23,7 +23,13 @@ public class UserController {
 	UserRepository repository;
 	
 	@GetMapping("/")
-	public String top() {
+	public String top(HttpSession session, Model model) {
+		Integer id = (Integer)session.getAttribute("id");
+		if (id == null) {
+			model.addAttribute("loginCheck", "ログアウト中");
+		}else {
+			model.addAttribute("loginCheck", "ログイン中");
+		}
 		return "/layout/top";
 	}
 	
@@ -71,6 +77,7 @@ public class UserController {
 		return "session/login";
 	}
 	
+	// ログイン
 	@PostMapping("/users/login")
 	public String login(@Valid @ModelAttribute UserForm form, BindingResult result, 
 			HttpSession session) {
@@ -84,6 +91,8 @@ public class UserController {
 		}
 		return "redirect:/users/" + form.getId();
 	}
+	
+	// ログアウト
 }
 
 
