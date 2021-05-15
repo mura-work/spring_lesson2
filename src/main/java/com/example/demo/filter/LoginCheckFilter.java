@@ -18,22 +18,27 @@ public class LoginCheckFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
-//		LoginCheck.loginCheck();
-		
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		String requestURL = httpRequest.getRequestURI();
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		HttpSession session = httpRequest.getSession();
 		Integer id = (Integer) session.getAttribute("id");
-		if (requestURL.endsWith("/users/login")) {
+		if (requestURL.endsWith("/users/login") || requestURL.endsWith("/") || 
+					requestURL.endsWith("/users/registration")) {
 			if (id == null) {
 				chain.doFilter(request, response);
 			} else {
-				httpResponse.sendRedirect("/users/" + id);
+				if (requestURL.endsWith("/users/login")) {
+					httpResponse.sendRedirect("/users/" + id);
+				}else {
+					chain.doFilter(request, response);
+				}
 			}
-		} else {
+		} else if (requestURL.endsWith("/h2-console")) {
+			chain.doFilter(request, response);
+		}else {
 			if (id == null) {
-				httpResponse.sendRedirect("/");
+				httpResponse.sendRedirect("/users/login");
 			} else {
 				chain.doFilter(request, response);
 			}
