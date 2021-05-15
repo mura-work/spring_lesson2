@@ -25,7 +25,7 @@ public class LoginCheckFilter implements Filter {
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		HttpSession session = httpRequest.getSession();
 		Integer id = (Integer) session.getAttribute("id");
-		if (requestURL.endsWith("/users/login") || requestURL.endsWith("/")) {
+		if (requestURL.endsWith("/users/login")) {
 			if (id == null) {
 				chain.doFilter(request, response);
 			} else {
