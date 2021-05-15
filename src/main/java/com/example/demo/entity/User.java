@@ -29,7 +29,7 @@ public class User {
 	@Value("${lesson2.boolean.property}")
 	private boolean isDeleted;
 	
-	@OneToMany(mappedBy="user", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="user")
 	private List<Book> books;
 
 	public Integer getId() {

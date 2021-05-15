@@ -25,12 +25,12 @@ public class UserController {
 	
 	@GetMapping("/")
 	public String top(HttpSession session, Model model) {
-		Integer id = (Integer)session.getAttribute("id");
-		if (id == null) {
-			model.addAttribute("loginCheck", "ログアウト中");
-		}else {
-			model.addAttribute("loginCheck", "ログイン中");
-		}
+//		Integer id = (Integer)session.getAttribute("id");
+//		if (id == null) {
+//			model.addAttribute("loginCheck", "ログアウト中");
+//		}else {
+//			model.addAttribute("loginCheck", "ログイン中");
+//		}
 		return "/layout/top";
 	}
 	

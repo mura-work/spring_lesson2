@@ -23,7 +23,7 @@ public class Book {
 	@NotNull
 	private String text;
 	
-	@JoinColumn(name = "user_id", nullable = false)
+	@JoinColumn(name = "user_id")
 	@ManyToOne(cascade = CascadeType.ALL)
 	private User user;
 

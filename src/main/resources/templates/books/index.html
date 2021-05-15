@@ -6,7 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h3>users一覧画面</h3>
+	<h3>投稿一覧画面</h3>
 	<!-- <form method="get" th:action="@{/items/search}">
 		<label>名前で検索</label><br>
 		<input type="text" name="name" />
@@ -15,28 +15,30 @@
 	<table>
 		<thead>
 			<tr>
-				<th>id</th>
 				<th>名前</th>
-				<th>ステータス</th>
+				<th>タイトル</th>
+				<th>内容</th>
 				<th></th>
 				<th></th>
 				<th></th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="user: ${users}">
-				<td th:text="${user.id}"></td>
-				<td th:text="${user.name}"></td>
-				<td th:text="${user.isDeleted}"></td>
-				<td><a th:href="@{/users/{id}(id=${user.id})}">詳細</a></td>
-				<td><a th:href="@{/users/{id}/edit(id=${user.id})}">編集</a></td>
+			<tr th:each="book: ${books}">
+				<td th:text="${book.user.name}"></td>
+				<td th:text="${book.title}"></td>
+				<td th:text="${book.text}"></td>
+				<td><a th:href="@{/books/{id}(id=${book.id})}">詳細</a></td>
+				<td><a th:href="@{/books/{id}/edit(id=${book.id})}">編集</a></td>
 				<td>
-					<form th:method="delete" th:action="@{/users/{id}(id=${user.id})}">
+					<form th:method="delete" th:action="@{/books/{id}(id=${book.id})}">
 						<input type="submit" value="削除" />
 					</form>
-				</td> 
+				</td>
 			</tr>
 		</tbody>
 	</table>
+	
+	<a href="/books/new">投稿画面へ移動</a>
 </body>
 </html>
