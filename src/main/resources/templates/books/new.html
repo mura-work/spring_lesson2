@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/main :: layout(~{::body/content()})}">
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+	<div>投稿画面</div>
+	<form method="post" action="/books" th:object="${bookForm}">
+		<label>タイトル</label>
+		<input type="text" th:field="*{title}" />
+		<span th:errors="*{title}"></span><br />
+		<label>内容</label>
+		<textarea name="text" rows="5" cols="40"></textarea>
+		<span th:errors="*{text}"></span><br />
+		<input type="submit" value="保存" />
+	</form>
+</body>
+</html>
