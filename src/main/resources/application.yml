@@ -7,6 +7,10 @@ spring:
  h2.console.enabled: true
  mvc:
    hiddenmethod.filter.enabled: true
+ server:
+  servlet:
+    session:
+      timeout=20
 
 lesson2:
  string:
