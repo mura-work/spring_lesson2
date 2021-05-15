@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" 
+		th:replace="~{/layout/main :: layout(~{::body/content()})}">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 	<h3>トップ</h3>
+	<a href="/users/login">ログインする</a>
 </body>
 </html>

@@ -9,7 +9,6 @@ public class UserForm {
 	@NotNull
 	private Integer id;
 	
-	@NotBlank
 	@Size(max = 20, min = 2)
 	private String name;
 	

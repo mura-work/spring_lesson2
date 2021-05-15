@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.entity.User;
 import com.example.demo.form.UserForm;
@@ -63,4 +65,26 @@ public class UserController {
 		repository.save(user);
 		return "redirect:/";
 	}
+	
+	@GetMapping("/users/login")
+	public String login(@ModelAttribute UserForm form) {
+		return "session/login";
+	}
+	
+	@PostMapping("/users/login")
+	public String login(@Valid @ModelAttribute UserForm form, BindingResult result, 
+			HttpSession session) {
+		if (result.hasErrors()) {
+			System.out.println("エラー");
+			return "session/login";
+		}
+		Integer id = (Integer)session.getAttribute("id");
+		if (id == null) {
+			session.setAttribute("id", form.getId());
+		}
+		return "redirect:/users/" + form.getId();
+	}
 }
+
+
+

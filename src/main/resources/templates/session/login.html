@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+		th:replace="~{/layout/main :: layout(~{::body/content()})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h3>ログイン</h3>
+	<form method="post" action="/users/login" th:object="${userForm}">
+		<label>id</label>
+		<input type="number" th:field="*{id}" />
+		<span th:errors="*{id}"></span>
+		<label>パスワード</label>
+		<input type="text" th:field="*{password}" />
+		<span th:errors="*{password}"></span>
+		<input type="submit" value="ログイン" />
+	</form>
+</body>
+</html>
