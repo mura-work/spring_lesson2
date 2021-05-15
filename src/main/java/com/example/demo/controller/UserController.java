@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.User;
 import com.example.demo.form.UserForm;
@@ -64,11 +65,13 @@ public class UserController {
 		return "redirect:/users/" + id;
 	}
 	
+	// 退会する
 	@PatchMapping("/users/{id}/reject")
-	public String rejectUser(@PathVariable int id) {
+	public String rejectUser(@PathVariable int id, HttpSession session) {
 		User user = repository.getOne(id);
 		user.setDeleted(true);
 		repository.save(user);
+		session.invalidate();
 		return "redirect:/";
 	}
 	
@@ -80,9 +83,10 @@ public class UserController {
 	// ログイン
 	@PostMapping("/users/login")
 	public String login(@Valid @ModelAttribute UserForm form, BindingResult result, 
-			HttpSession session) {
+			HttpSession session, RedirectAttributes flash) {
 		if (result.hasErrors()) {
-			System.out.println("エラー");
+			flash.addFlashAttribute("org.springframework.validation.BindingResult.userForm", result);
+			flash.addFlashAttribute("userForm", form);
 			return "session/login";
 		}
 		Integer id = (Integer)session.getAttribute("id");
@@ -97,6 +101,28 @@ public class UserController {
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/";
+	}
+	
+	// 新規登録
+	@GetMapping("/users/registration")
+	public String registration(@ModelAttribute UserForm form) {
+		return "/session/registration";
+	}
+	
+	@PostMapping("/users/registration")
+	public String registration(@Valid @ModelAttribute UserForm form, 
+			BindingResult result, HttpSession session, RedirectAttributes flash) {
+		if (result.hasErrors()) {
+			flash.addFlashAttribute("org.springframework.validation.BindingResult.userForm", result);
+			flash.addFlashAttribute("userForm", form);
+			return "/session/registration";
+		}
+		User user = new User();
+		user.setName(form.getName());
+		user.setPassword(form.getPassword());
+		repository.save(user);
+		session.setAttribute("id", user.getId());
+		return "redirect:/users/" + user.getId();
 	}
 }
 

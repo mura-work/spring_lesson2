@@ -6,18 +6,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h3>ログイン</h3>
-	<form method="post" action="/users/login" th:object="${userForm}">
-		<label>id</label>
-		<input type="number" th:field="*{id}" />
-		<span th:errors="*{id}"></span>
+	<h3>会員登録</h3>
+	<form method="post" action="/users/registration" th:object="${userForm}">
+		<label>名前</label>
+		<input type="text" th:field="*{name}" />
+		<span th:errors="*{name}"></span>
 		<label>パスワード</label>
 		<input type="text" th:field="*{password}" />
 		<span th:errors="*{password}"></span>
-		<input type="submit" value="ログイン" />
+		<input type="submit" value="登録" />
 	</form>
-	<div>
-		会員登録は<a href="/users/registration">こちら</a>
-	</div>
 </body>
 </html>
