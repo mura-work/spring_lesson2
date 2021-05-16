@@ -1,6 +1,5 @@
 package com.example.demo.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,7 +23,7 @@ public class Book {
 	private String text;
 	
 	@JoinColumn(name = "user_id")
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	private User user;
 
 	public Integer getId() {

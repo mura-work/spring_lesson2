@@ -86,9 +86,13 @@ public class BookController {
 	}
 	
 	@DeleteMapping("/books/{id}")
-	public String update(@PathVariable int id, RedirectAttributes flash) {
-		repository.deleteById(id);
-		flash.addFlashAttribute("bookDelete", "ID：" + id + "を削除しました");
+	public String update(@PathVariable int id, RedirectAttributes flash, 
+			HttpSession session) {
+		Book book = repository.getById(id);
+		if (book.getUser().getId() == session.getAttribute("id")) {
+			repository.delete(book);
+			flash.addFlashAttribute("bookDelete", "ID：" + id + "を削除しました");
+		}
 		return "redirect:/books";
 	}
 }
