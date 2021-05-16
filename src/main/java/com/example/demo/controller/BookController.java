@@ -48,12 +48,15 @@ public class BookController {
 		User user = userRepository.getOne((Integer)session.getAttribute("id"));
 		book.setUser(user);
 		repository.save(book);
-	return "redirect:/books";
+		flash.addFlashAttribute("flash", "投稿が成功しました");
+		return "redirect:/books";
 	}
 	
 	@GetMapping("/books")
 	public String index(Model model) {
 		model.addAttribute("books", repository.findAll());
+		String flash = (String) model.getAttribute("flash");
+		model.addAttribute("flash", flash);
 		return "books/index";
 	}
 	
