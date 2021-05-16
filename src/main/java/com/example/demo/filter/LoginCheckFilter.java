@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.ui.Model;
+import com.example.demo.entity.User;
 
 public class LoginCheckFilter implements Filter {
 
@@ -23,6 +23,10 @@ public class LoginCheckFilter implements Filter {
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		HttpSession session = httpRequest.getSession();
 		Integer id = (Integer) session.getAttribute("id");
+		Boolean isDeleted = User.findById(id).isDeleted();
+		if (isDeleted) {
+			httpResponse.sendRedirect("/users/login");
+		}
 		if (requestURL.endsWith("/users/login") || requestURL.endsWith("/") || 
 					requestURL.endsWith("/users/registration")) {
 			if (id == null) {
@@ -46,13 +50,3 @@ public class LoginCheckFilter implements Filter {
 	}
 }
 
-class LoginCheck {
-	private static void loginCheck(HttpSession session, Model model) {
-		Integer id = (Integer)session.getAttribute("id");
-		if (id == null) {
-			model.addAttribute("loginCheck", "ログアウト中");
-		}else {
-			model.addAttribute("loginCheck", "ログイン中");
-		}
-	}
-}

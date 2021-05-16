@@ -27,7 +27,8 @@
 			<tr th:each="user: ${users}">
 				<td th:text="${user.id}"></td>
 				<td th:text="${user.name}"></td>
-				<td th:text="${user.isDeleted}"></td>
+				<td th:if="${user.isDeleted == true }" th:text="退会済"></td>
+				<td th:if="${user.isDeleted == false }" th:text="会員"></td>
 				<td><a th:href="@{/users/{id}(id=${user.id})}">詳細</a></td>
 				<td><a th:href="@{/users/{id}/edit(id=${user.id})}">編集</a></td>
 				<td>
