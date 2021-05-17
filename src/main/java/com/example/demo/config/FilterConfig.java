@@ -9,12 +9,12 @@ import com.example.demo.filter.LoginCheckFilter;
 
 @Configuration
 public class FilterConfig implements WebMvcConfigurer {
-	@Bean
-	public FilterRegistrationBean<LoginCheckFilter> configLoginCheck(){
-		FilterRegistrationBean<LoginCheckFilter> bean = 
-				new FilterRegistrationBean<LoginCheckFilter>(); 
-		bean.setFilter(new LoginCheckFilter());
-		bean.setOrder(1);
-		return bean;
-	}
+//	@Bean
+//	public FilterRegistrationBean<LoginCheckFilter> configLoginCheck(){
+//		FilterRegistrationBean<LoginCheckFilter> bean = 
+//				new FilterRegistrationBean<LoginCheckFilter>(); 
+//		bean.setFilter(new LoginCheckFilter());
+//		bean.setOrder(1);
+//		return bean;
+//	}
 }

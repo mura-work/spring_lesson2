@@ -23,10 +23,10 @@ public class LoginCheckFilter implements Filter {
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		HttpSession session = httpRequest.getSession();
 		Integer id = (Integer) session.getAttribute("id");
-		Boolean isDeleted = User.findById(id).isDeleted();
-		if (isDeleted) {
-			httpResponse.sendRedirect("/users/login");
-		}
+//		Boolean isDeleted = User.findById(id).isDeleted();
+//		if (isDeleted) {
+//			httpResponse.sendRedirect("/users/login");
+//		}
 		if (requestURL.endsWith("/users/login") || requestURL.endsWith("/") || 
 					requestURL.endsWith("/users/registration")) {
 			if (id == null) {
