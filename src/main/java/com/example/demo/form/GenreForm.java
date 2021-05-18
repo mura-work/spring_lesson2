@@ -1,7 +1,21 @@
 package com.example.demo.form;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class GenreForm {
-	private Integer id;
+	
+	@NotNull
+	@Size(max = 20)
 	private String name;
-	private boolean isEnabled;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
 }

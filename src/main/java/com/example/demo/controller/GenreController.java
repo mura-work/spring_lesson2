@@ -1,5 +1,12 @@
 package com.example.demo.controller;
 
-public class GenreController {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
+import com.example.demo.repository.GenreRepository;
+
+@Controller
+public class GenreController {
+	@Autowired
+	GenreRepository repository;
 }
