@@ -1,26 +1,25 @@
 package com.example.demo.entity;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "genres")
-public class Genre {
+@Table(name = "products")
+public class Product {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
-	private boolean isEnabled;
+	private int price;
 	
-	@OneToMany(mappedBy="genre")
-	List<Product> products;
+	@ManyToOne
+	private Genre genre;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -33,16 +32,18 @@ public class Genre {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public boolean isEnabled() {
-		return isEnabled;
+	public int getPrice() {
+		return price;
 	}
-	public void setEnabled(boolean isEnabled) {
-		this.isEnabled = isEnabled;
+	public void setPrice(int price) {
+		this.price = price;
 	}
-	public List<Product> getProducts() {
-		return products;
+	public Genre getGenre() {
+		return genre;
 	}
-	public void setProducts(List<Product> products) {
-		this.products = products;
+	public void setGenre(Genre genre) {
+		this.genre = genre;
 	}
+	
+	
 }
