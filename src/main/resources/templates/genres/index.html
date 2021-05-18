@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/main :: layout(~{::body/content()})}">
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+	<h3>投稿一覧画面</h3>
+	<div th:text="${flash}" ></div>
+	<form method="get" th:action="@{/books/search}">
+		<label>タイトルで検索</label><br>
+		<input type="text" name="title" />
+		<input type="submit" value="検索" />
+	</form>
+	<table>
+		<thead>
+			<tr>
+				<th>名前</th>
+				<th>タイトル</th>
+				<th>内容</th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="book: ${books}">
+				<td th:text="${book.user.id}"></td>
+				<td th:text="${book.user.name}"></td>
+				<td th:text="${book.id}"></td>
+				<td th:text="${book.title}"></td>
+				<td th:text="${book.text}"></td>
+				<td><a th:href="@{/books/{id}(id=${book.id})}">詳細</a></td>
+				<td><a th:href="@{/books/{id}/edit(id=${book.id})}">編集</a></td>
+				<td>
+					<form th:method="delete" th:action="@{/books/{id}(id=${book.id})}">
+						<input type="submit" value="削除" />
+					</form>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<a href="/books/new">投稿画面へ移動</a>
+</body>
+</html>
