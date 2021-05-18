@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.Book;
@@ -53,7 +54,7 @@ public class BookController {
 	}
 	
 	@GetMapping("/books")
-	public String index(Model model) {
+	public String index(BookForm form, Model model) {
 		model.addAttribute("books", repository.findAll());
 		String flash = (String) model.getAttribute("flash");
 		model.addAttribute("flash", flash);
@@ -97,6 +98,12 @@ public class BookController {
 			flash.addFlashAttribute("bookDelete", "ID：" + id + "を削除しました");
 		}
 		return "redirect:/books";
+	}
+	
+	@GetMapping("/books/search")
+	public String search(@RequestParam("title") String title, Model model) {
+		model.addAttribute("books", repository.findByTitleLike("%" + title + "%"));
+		return "books/index";
 	}
 }
 
