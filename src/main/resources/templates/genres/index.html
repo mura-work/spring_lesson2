@@ -8,40 +8,33 @@
 <body>
 	<h3>ジャンル一覧画面</h3>
 	<div th:text="${flash}" ></div>
-	<form method="get" th:action="@{/books/search}">
-		<label>タイトルで検索</label><br>
-		<input type="text" name="title" />
-		<input type="submit" value="検索" />
+	<form method="post" action="/genres">
+		<label>ジャンルを入力</label>
+		<input type="text" name="name"/>
+		<input type="submit" value="送信">
 	</form>
 	<table>
 		<thead>
 			<tr>
+				<th>id</th>
 				<th>名前</th>
-				<th>タイトル</th>
-				<th>内容</th>
 				<th></th>
 				<th></th>
 				<th></th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="book: ${books}">
-				<td th:text="${book.user.id}"></td>
-				<td th:text="${book.user.name}"></td>
-				<td th:text="${book.id}"></td>
-				<td th:text="${book.title}"></td>
-				<td th:text="${book.text}"></td>
-				<td><a th:href="@{/books/{id}(id=${book.id})}">詳細</a></td>
-				<td><a th:href="@{/books/{id}/edit(id=${book.id})}">編集</a></td>
+			<tr th:each="genre: ${genres}">
+				<td th:text="${genre.id}"></td>
+				<td th:text="${genre.name}"></td>
+				<td><a th:href="@{/genres/{id}/edit(id=${genre.id})}">編集</a></td>
 				<td>
-					<form th:method="delete" th:action="@{/books/{id}(id=${book.id})}">
+					<form th:method="delete" th:action="@{/genres/{id}(id=${genre.id})}">
 						<input type="submit" value="削除" />
 					</form>
 				</td>
 			</tr>
 		</tbody>
 	</table>
-	
-	<a href="/books/new">投稿画面へ移動</a>
 </body>
 </html>
