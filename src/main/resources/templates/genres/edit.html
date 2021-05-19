@@ -7,13 +7,9 @@
 </head>
 <body>
 	<div>編集画面</div>
-	<form th:method="patch" th:action="@{/books/{id}(id=*{id})}" th:object="${bookForm}">
-		<label>タイトル</label>
-		<input type="text" th:field="*{title}" />
-		<span th:errors="*{title}"></span><br />
-		<label>内容</label>
-		<textarea name="text" rows="5" cols="40" th:field="*{text}"></textarea>
-		<span th:errors="*{text}"></span><br />
+	<form th:method="patch" th:action="@{/genres/{id}(id=*{id})}" th:object="${genres}">
+		<label>ジャンル</label>
+		<input type="text" th:field="*{name}" />
 		<input type="submit" value="更新" />
 	</form>
 </body>
