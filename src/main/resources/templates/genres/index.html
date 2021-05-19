@@ -13,6 +13,12 @@
 		<input type="text" name="name"/>
 		<input type="submit" value="送信">
 	</form>
+	<div>
+		<form method="get" th:action="@{/genres/search}">
+			<input type="text" th:name="name" placeholder="検索ワードを入力" />
+			<input type="submit" value="検索" />
+		</form>
+	</div>
 	<table>
 		<thead>
 			<tr>

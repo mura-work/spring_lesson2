@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.Genre;
@@ -25,6 +26,12 @@ public class GenreController {
 	@GetMapping("/genres")
 	public String index(GenreForm form, Model model) {
 		model.addAttribute("genres", repository.findAll());
+		return "genres/index";
+	}
+	
+	@GetMapping("/genres/search")
+	public String search(@RequestParam("name") String name, Model model) {
+		model.addAttribute("genres", repository.findByNameLike("%" + name + "%"));
 		return "genres/index";
 	}
 	

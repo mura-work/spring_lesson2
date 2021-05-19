@@ -9,4 +9,5 @@ import com.example.demo.entity.Genre;
 
 public interface GenreRepository extends JpaRepository<Genre, Integer> {
 	Genre getById(int id);
+	List<Genre> findByNameLike(String name);
 }
