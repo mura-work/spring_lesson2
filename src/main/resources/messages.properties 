@@ -1,0 +1,2 @@
+typeMismatch.java.lang.Integer={0}は整数値で入力してください。
+typeMismatch.java.util.Date=正しい日付を入力してください。
