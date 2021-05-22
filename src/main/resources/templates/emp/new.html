@@ -9,8 +9,8 @@
 	<div>投稿画面</div>
 	<form method="post" action="/employee/new_confirm" th:object="${employeeForm}">
 		<div>
-			<label>タイトル</label>
-			<input type="text" th:field="*{empPass}" />
+			<label>パスワード</label>
+			<input type="password" th:name="empPass" th:value="*{empPass}" />
 			<span th:errors="*{empPass}"></span><br />
 		</div>
 		
@@ -47,14 +47,8 @@
 		</div>
 		
 		<div>
-			<label>住所</label>
-			<input type="text" th:field="*{address}" />
-			<span th:errors="*{address}"></span><br />
-		</div>
-		
-		<div>
 			<label>部署</label>
-			<select name="deptId ">
+			<select name="deptId">
 				<option value="1" th:selected="${deptId == 1}">営業部</option> 
 				<option value="2" th:selected="${deptId == 2}">経理部</option> 
 				<option value="3" th:selected="${deptId == 3}">総務部</option> 

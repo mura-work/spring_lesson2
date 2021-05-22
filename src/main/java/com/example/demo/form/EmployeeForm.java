@@ -25,10 +25,9 @@ public class EmployeeForm {
 	@NotBlank
 	private String address;
 	
-	@NotBlank
+	
 	private Date birthday;
 	
-	@NotBlank
 	@Max(2)
 	private Integer authority;
 	

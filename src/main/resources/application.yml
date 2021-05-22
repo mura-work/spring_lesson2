@@ -6,6 +6,7 @@ spring:
   password:
  h2.console.enabled: true
  mvc:
+   date-format: yyyy/MM/dd
    hiddenmethod.filter.enabled: true
  server:
   servlet:
