@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/main :: layout(~{::body/content()})}">
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+	<div>投稿画面</div>
+	<form method="post" action="/employee/new_confirm" th:object="${employeeForm}">
+		<div>
+			<label>パスワード</label>
+			<input type="password" th:name="empPass" th:value="*{empPass}" />
+			<span th:errors="*{empPass}"></span><br />
+		</div>
+		
+		<div>
+			<label>名前</label>
+			<input type="text" th:field="*{empName}" />
+			<span th:errors="*{empName}"></span><br />
+		</div>
+		
+		<div>
+			<label>性別</label>
+			<input type="radio" name="gender" value="1" th:checked="*{gender == 1}" />男性
+			<input type="radio" name="gender" value="2" th:checked="*{gender == 2}" />女性
+			<span th:errors="*{gender}"></span><br />
+		</div>
+		
+		<div>
+			<label>住所</label>
+			<input type="text" th:field="*{address}" />
+			<span th:errors="*{address}"></span><br />
+		</div>
+		
+		<div>
+				<label>生年月日</label>
+				<input type="text" th:field="*{birthday}" />
+				<span th:errors="*{birthday}"></span><br />
+		</div>
+		
+		<div>
+			<label>権限</label>
+			<input type="radio" name="authority" value="1" th:checked="*{authority == 1}" />一般
+			<input type="radio" name="authority" value="2" th:checked="*{authority == 2}" />管理者
+			<span th:errors="*{authority}"></span><br />
+		</div>
+		
+		<div>
+			<label>部署</label>
+			<select name="deptId">
+				<option value="1" th:selected="${deptId == 1}">営業部</option> 
+				<option value="2" th:selected="${deptId == 2}">経理部</option> 
+				<option value="3" th:selected="${deptId == 3}">総務部</option> 
+			</select>
+			<span th:errors="*{deptId}"></span><br />
+		</div>
+		
+		<div>
+			<input type="submit" value="保存" />
+		</div>
+	</form>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/main :: layout(~{::body/content()})}">
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+	<div>投稿確認画面画面</div>
+		<div>
+			<label>パスワード</label>
+			<span th:text="${employeeForm.empPass}" ></span>
+		</div>
+		
+		<div>
+			<label>名前</label>
+			<span th:text="*{employeeForm.empName}" ></span>
+		</div>
+		
+		<div>
+			<label>性別</label>
+			<span th:if="${employeeForm.gender == 1}">男性</span>
+			<span th:if="${employeeForm.gender == 2}">女性</span>
+		</div>
+		
+		<div>
+			<label>住所</label>
+			<span th:text="*{employeeForm.address}" ></span>
+		</div>
+		
+		<div>
+				<label>生年月日</label>
+				<span th:text="*{employeeForm.birthday}" ></span>
+		</div>
+		
+		<div>
+			<label>権限</label>
+			<span th:if="${employeeForm.authority == 1}">一般</span>
+			<span th:if="${employeeForm.authority == 2}">管理者</span>
+		</div>
+		
+		<div>
+			<label>部署</label>
+			<span th:if="${employeeForm.deptId == 1}">営業部</span>
+			<span th:if="${employeeForm.deptId == 2}">経理部</span>
+			<span th:if="${employeeForm.deptId == 3}">総務部</span>
+		</div>
+		
+		<div>
+		</div>
+	<form method="post" action="/employee" th:object="${employeeForm}">
+		<input type="hidden" th:field="*{empPass}" />
+		<input type="hidden" th:field="*{empName}" />
+		<input type="hidden" th:field="*{gender}" />
+		<input type="hidden" th:field="*{address}" />
+		<input type="hidden" th:field="*{birthday}" />
+		<input type="hidden" th:field="*{authority}" />
+		<input type="hidden" th:field="*{deptId}" />
+		<input type="submit" value="確定" />
+	</form>
+	<form method="post" action="/employee/new" th:object="${employeeForm}">
+		<input type="hidden" th:field="*{empPass}" />
+		<input type="hidden" th:field="*{empName}" />
+		<input type="hidden" th:field="*{gender}" />
+		<input type="hidden" th:field="*{address}" />
+		<input type="hidden" th:field="*{birthday}" />
+		<input type="hidden" th:field="*{authority}" />
+		<input type="hidden" th:field="*{deptId}" />
+		<input type="submit" value="戻る" />
+	</form>
+</body>
+</html>
