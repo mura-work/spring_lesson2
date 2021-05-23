@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class EmployeeForm {
@@ -12,23 +13,21 @@ public class EmployeeForm {
 	private Integer empId;
 	
 	@NotBlank
-	@Size(max = 30)
+	@Size(max = 16)
 	private String empPass;
 	
 	@NotBlank
-	@Size(max = 16)
+	@Size(max = 30)
 	private String empName;
 	
-	@Max(2)
 	private Integer gender;
 	
 	@NotBlank
 	private String address;
 	
-	
+	@NotNull
 	private Date birthday;
 	
-	@Max(2)
 	private Integer authority;
 	
 	private Integer deptId;

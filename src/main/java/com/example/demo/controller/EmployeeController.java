@@ -28,7 +28,7 @@ public class EmployeeController {
 	public String empNewConfirm(@Validated @ModelAttribute EmployeeForm form, BindingResult result,
 			RedirectAttributes flash) {
 		if (result.hasErrors()) {
-			return "redirect:/employee/new";
+			return "emp/new";
 		}
 		return "emp/confirm";
 	}
