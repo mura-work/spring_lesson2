@@ -41,7 +41,7 @@
 		</tbody>
 	</table>
 	
-	<form id="csvform" method="post" th:action="@{/employee/csv}" th:object="${employeeForm}">
+	<form id="csvform" method="post" th:action="@{/employee.csv}" th:object="${employeeForm}">
           <div th:each="emp: ${emp}">
             <input type="hidden" name="id" th:value="${emp.empId}" />
             <input type="hidden" name="empName" th:value="${emp.empName}" />
@@ -51,7 +51,7 @@
             <input type="hidden" name="authority" th:value="${emp.authority}" />
             <input type="hidden" name="deptName" th:value="${emp.dept.deptName}" />
           </div>
-          <button type="submit">CSV</button>
+          <input type="submit" value="出力"></input>
         </form>
 	
 	<a href="/employee/new">投稿画面へ移動</a>

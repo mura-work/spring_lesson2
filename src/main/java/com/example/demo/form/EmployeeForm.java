@@ -12,24 +12,16 @@ import com.example.demo.util.Employee;
 @Employee
 public class EmployeeForm {
 	
-	@Max(999)
 	private Integer empId;
 	
-	@NotBlank(message = "何か入れる")
-	@Size(max = 16)
 	private String empPass;
 	
-	@NotBlank
-	@Size(max = 30)
 	private String empName;
 	
 	private Integer gender;
 	
-	@NotBlank
-	@Size(max = 60)
 	private String address;
 	
-	@NotNull
 	private Date birthday;
 	
 	private Integer authority;
