@@ -7,25 +7,21 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.example.demo.util.Employee;
+
+@Employee
 public class EmployeeForm {
 	
-	@Max(999)
 	private Integer empId;
 	
-	@NotBlank
-	@Size(max = 16)
 	private String empPass;
 	
-	@NotBlank
-	@Size(max = 30)
 	private String empName;
 	
 	private Integer gender;
 	
-	@NotBlank
 	private String address;
 	
-	@NotNull
 	private Date birthday;
 	
 	private Integer authority;

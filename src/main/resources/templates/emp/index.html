@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/main :: layout(~{::body/content()})}">
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+	<h3>社員一覧画面</h3>
+	<div th:text="${flash}" ></div>
+<!-- 	<form method="get" th:action="@{/books/search}"> -->
+<!-- 		<label>タイトルで検索</label><br> -->
+<!-- 		<input type="text" name="title" /> -->
+<!-- 		<input type="submit" value="検索" /> -->
+<!-- 	</form> -->
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>社員名</th>
+				<th>パスワード</th>
+				<th>性別</th>
+				<th>住所</th>
+				<th>誕生日</th>
+				<th>権限</th>
+				<th>部署</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="emp: ${emp}">
+				<td th:text="${emp.empId}"></td>
+				<td th:text="${emp.empName}"></td>
+				<td th:text="${emp.empPass}"></td>
+				<td th:text="${emp.gender}"></td>
+				<td th:text="${emp.address}"></td>
+				<td th:text="${emp.birthday}"></td>
+				<td th:text="${emp.authority}"></td>
+				<td th:text="${emp.dept.deptName}"></td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<form id="csvform" method="post" th:action="@{/employee.csv}" th:object="${employeeForm}">
+          <div th:each="emp: ${emp}">
+            <input type="hidden" name="id" th:value="${emp.empId}" />
+            <input type="hidden" name="empName" th:value="${emp.empName}" />
+            <input type="hidden" name="gender" th:value="${emp.gender}" />
+            <input type="hidden" name="address" th:value="${emp.address}" />
+            <input type="hidden" name="birthday" th:value="${emp.birthday}" />
+            <input type="hidden" name="authority" th:value="${emp.authority}" />
+            <input type="hidden" name="deptName" th:value="${emp.dept.deptName}" />
+          </div>
+          <input type="submit" value="出力"></input>
+        </form>
+	
+	<a href="/employee/new">投稿画面へ移動</a>
+</body>
+</html>
