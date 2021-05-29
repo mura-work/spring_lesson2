@@ -5,45 +5,50 @@
 <meta charset="UTF-8" />
 <title>Insert title here</title>
 </head>
-<body>
+<body th:object="${employeeForm}">
 	<div>投稿画面</div>
+	<div>
+		 <ul>
+       <li th:each="error: ${#fields.detailedErrors()}">
+       		<span th:text="${error.message}"></span>
+       </li>
+		</ul>
+	</div>
 	<form method="post" action="/employee/new_confirm" th:object="${employeeForm}">
 		<div>
 			<label>パスワード</label>
 			<input type="password" th:name="empPass" th:value="*{empPass}" />
-			<span th:errors="*{empPass}"></span><br />
+			<!-- <span th:errors="*{empPass}"></span><br /> -->
 		</div>
 		
 		<div>
 			<label>社員名</label>
 			<input type="text" th:field="*{empName}" />
-			<span th:errors="*{empName}"></span><br />
+			<!-- <span th:errors="*{empName}"></span><br /> -->
 		</div>
 		
 		<div>
 			<label>性別</label>
 			<input type="radio" name="gender" value="1" th:checked="*{gender == 1}" />男性
 			<input type="radio" name="gender" value="2" th:checked="*{gender == 2}" />女性
-			<span th:errors="*{gender}"></span><br />
 		</div>
 		
 		<div>
 			<label>住所</label>
 			<input type="text" th:field="*{address}" />
-			<span th:errors="*{address}"></span><br />
+			<!-- <span th:errors="*{address}"></span><br /> -->
 		</div>
 		
 		<div>
 				<label>生年月日</label>
 				<input type="text" th:field="*{birthday}" />
-				<span th:errors="*{birthday}"></span><br />
+				<!-- <span th:errors="*{birthday}"></span><br /> -->
 		</div>
 		
 		<div>
 			<label>権限</label>
 			<input type="radio" name="authority" value="1" th:checked="*{authority == 1}" />一般
 			<input type="radio" name="authority" value="2" th:checked="*{authority == 2}" />管理者
-			<span th:errors="*{authority}"></span><br />
 		</div>
 		
 		<div>
@@ -53,7 +58,6 @@
 				<option value="2" th:selected="${deptId == 2}">経理部</option> 
 				<option value="3" th:selected="${deptId == 3}">総務部</option> 
 			</select>
-			<span th:errors="*{deptId}"></span><br />
 		</div>
 		
 		<div>

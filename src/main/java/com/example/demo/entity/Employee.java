@@ -32,7 +32,7 @@ public class Employee {
 	private Integer gender;
 	
 	@Column(name = "address")
-	private Integer address;
+	private String address;
 	
 	@Column(name = "birthday")
 	private Date birthday;
@@ -76,11 +76,11 @@ public class Employee {
 		this.gender = gender;
 	}
 
-	public Integer getAddress() {
+	public String getAddress() {
 		return address;
 	}
 
-	public void setAddress(Integer address) {
+	public void setAddress(String address) {
 		this.address = address;
 	}
 
